@@ -3,7 +3,7 @@ from script import fetch_all_stock_data
 #Ask the user to enter the stock symbol for the company they want data for.
 #and return data for said company
 def getSymbol():
-    stock_symbol = input("enter the stock symbol for the company:  ")
+    stock_symbol = input("\nenter the stock symbol for the company:  ")
     #gets data from API
     return fetch_all_stock_data(stock_symbol)
 
