@@ -1,7 +1,11 @@
-#get stock symbol...
+from script import fetch_all_stock_data 
+
+#ask for stock symbol and return data
 def getSymbol():
     stock_symbol = input("enter the stock symbol for the company:  ")
-    return stock_symbol
+    #gets data from API
+    return fetch_all_stock_data(stock_symbol)
+
 
 
 
