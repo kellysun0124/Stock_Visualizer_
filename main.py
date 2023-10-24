@@ -7,13 +7,29 @@ def getSymbol():
     #gets data from API
     return fetch_all_stock_data(stock_symbol)
 
-
-
+# Define a function that takes the time series number as an argument and returns the corresponding function name
+def get_time_series_function(time_series):
+    # Use a dictionary to map the numbers to the function names
+    time_series_dict = {
+        "1": "TIME_SERIES_INTRADAY",
+        "2": "TIME_SERIES_DAILY",
+        "3": "TIME_SERIES_WEEKLY",
+        "4": "TIME_SERIES_MONTHLY"
+    }
+    # Return the function name if the number is valid, otherwise return None
+    return time_series_dict.get(time_series, None)
 
 def main():
     print("Stock Data Visualizer")
     print("------------------------")
     getSymbol()
+    
+    print("Enter the time series function:")
+    print("1. TIME_SERIES_INTRADAY")
+    print("2. TIME_SERIES_DAILY")
+    print("3. TIME_SERIES_WEEKLY")
+    print("4. TIME_SERIES_MONTHLY")
+    time_series = input("Enter the number: ")
 
 
 
