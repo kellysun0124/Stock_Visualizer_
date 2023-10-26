@@ -1,4 +1,5 @@
 from script import fetch_all_stock_data 
+import matplotlib.pyplot as plt
 
 #Ask the user to enter the stock symbol for the company they want data for.
 #and return data for said company
@@ -38,7 +39,43 @@ def get_time_series_function():
     return time_series_dict.get(time_series, None)
 
 def getGraphType():
-    print("Select graph type...")    
+    print("Select graph type:")
+    print("1. Line Graph")
+    print("2. Bar Graph")
+    
+    graph_choice = input("Enter the number: ")
+    
+    # Check if the input is valid
+    if graph_choice in ['1', '2']:  
+        return graph_choice
+    else:
+        print("Invalid selection. Please enter 1 for Line Graph or 2 for Bar Graph.")
+            
+    return graph_choice
+
+# Function to visualize the stock data
+def visualize_stock_data(data, graph_type):
+    # Extracting the time series data from the response
+    time_series_data = data.get('Time Series (Daily)', {})
+    
+    dates = list(time_series_data.keys())
+    closing_prices = [float(value['4. close']) for value in time_series_data.values()]
+    
+    if graph_type == '1':  # Line Graph
+        plt.plot(dates, closing_prices)
+        
+    elif graph_type == '2':  # Bar Graph
+        plt.bar(dates, closing_prices)
+    
+    else:
+        print("Invalid graph type.")
+        return
+    
+    plt.xlabel("Date")
+    plt.ylabel("Closing Price")
+    plt.title("Stock Data Visualization")
+    plt.xticks(rotation=45)
+    plt.show()
 
 def main():
     print("Stock Data Visualizer")
