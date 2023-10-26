@@ -4,19 +4,19 @@ import matplotlib.pyplot as plt
 #Ask the user to enter the stock symbol for the company they want data for.
 #and return data for said company
 def getSymbol():
-    while True:
-        stock_symbol = input("\nenter the stock symbol for the company:  ")
+   while True:
+        stock_symbol = input("\nenter the stock symbol for the company (or 'exit' to quit):  ")
 
-        #gets data from API
+        if stock_symbol.lower() == 'exit':
+            exit()
+
+        # gets data from API
         data = fetch_all_stock_data(stock_symbol)
-            #print(type(data))
-    
 
-        #check for error
-        if data.get('Error Message') is not None:
+        # check for error
+        if data.get('Error Message') is not None or 'Time Series (Daily)' not in data:
             print("please enter a viable symbol")
         else:
-            False
             return data
         
 # Define a function that takes the time series number as an argument and returns the corresponding function name
@@ -40,34 +40,31 @@ def get_time_series_function():
 
 # Asks the user for the type of graph they want to see
 def getGraphType():
-    print("Select graph type:")
-    print("1. Line Graph")
-    print("2. Bar Graph")
-    
-    graph_choice = input("Enter the number: ")
-    
-    # Check if the input is valid
-    if graph_choice in ['1', '2']:  
-        return graph_choice
-    else:
-        print("Invalid selection. Please enter 1 for Line Graph or 2 for Bar Graph.")
+    while True:
+        print("Select graph type:")
+        print("1. Line Graph")
+        print("2. Bar Graph")
+        
+        graph_choice = input("Enter the number (or 'exit' to quit): ")
+        if graph_choice.lower() == 'exit':
+            exit()
             
-    return graph_choice
+        if graph_choice in ['1', '2']:
+            return graph_choice
+        else:
+            print("Invalid selection. Please enter 1 for Line Graph or 2 for Bar Graph.")
+
 
 # Function to visualize the stock data
 def visualizeStockData(data, graph_type):
-    # Extracting the time series data from the response
     time_series_data = data.get('Time Series (Daily)', {})
-    
-    dates = list(time_series_data.keys())
-    closing_prices = [float(value['4. close']) for value in time_series_data.values()]
+    dates = list(time_series_data.keys())[:10]  # Taking the latest 10 entries for better visualization
+    closing_prices = [float(value['4. close']) for value in time_series_data.values()][:10]
     
     if graph_type == '1':  # Line Graph
         plt.plot(dates, closing_prices)
-        
     elif graph_type == '2':  # Bar Graph
         plt.bar(dates, closing_prices)
-    
     else:
         print("Invalid graph type.")
         return
