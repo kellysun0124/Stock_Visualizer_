@@ -37,6 +37,9 @@ def get_time_series_function():
     # Return the function name if the number is valid, otherwise return None
     return time_series_dict.get(time_series, None)
 
+def getGraphType():
+    print("Select graph type...")    
+
 def main():
     print("Stock Data Visualizer")
     print("------------------------")
