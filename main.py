@@ -38,6 +38,7 @@ def get_time_series_function():
     # Return the function name if the number is valid, otherwise return None
     return time_series_dict.get(time_series, None)
 
+# Asks the user for the type of graph they want to see
 def getGraphType():
     print("Select graph type:")
     print("1. Line Graph")
@@ -54,7 +55,7 @@ def getGraphType():
     return graph_choice
 
 # Function to visualize the stock data
-def visualize_stock_data(data, graph_type):
+def visualizeStockData(data, graph_type):
     # Extracting the time series data from the response
     time_series_data = data.get('Time Series (Daily)', {})
     
@@ -80,8 +81,12 @@ def visualize_stock_data(data, graph_type):
 def main():
     print("Stock Data Visualizer")
     print("------------------------")
-    getSymbol()
+    stockData = getSymbol()
 
+    if stockData:
+        graphType = getGraphType()
+        visualizeStockData(stockData, graphType)
+        
     time_series = get_time_series_function()
     if time_series is not None:
         print(f"Selected time series function: {time_series}")
