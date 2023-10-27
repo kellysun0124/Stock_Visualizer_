@@ -52,14 +52,22 @@ def plot_stock_data(symbol, chart_type, time_series, start_date, end_date):
         df = df.loc[start_date:end_date]
     # Plot the data according to chart type
     if chart_type == "line":
-        # Use matplotlib.pyplot to create a line chart of close prices
-        plt.plot(df["Close"])
+        # Use matplotlib.pyplot to create line charts for open, close, high, and low prices
+        plt.plot(df.index, df["Open"], label="Open")
+        plt.plot(df.index, df["Close"], label="Close")
+        plt.plot(df.index, df["High"], label="High")
+        plt.plot(df.index, df["Low"], label="Low")
     elif chart_type == "bar":
         # Use matplotlib.pyplot to create a bar chart of close prices
-        plt.bar(df.index, df["Close"])
-    plt.title(f"{symbol} Close Prices from {start_date} to {end_date}")
+        plt.bar(df.index, df["Open"], label="Open")
+        plt.bar(df.index, df["Close"], label="Close")
+        plt.bar(df.index, df["High"], label="High")
+        plt.bar(df.index, df["Low"], label="Low")
+
+    plt.title(f"{symbol} Prices from {start_date} to {end_date}")
     plt.xlabel("Date")
     plt.ylabel("Price")
+    plt.legend()  # Add a legend to distinguish open, close, high, and low lines
     plt.show()
 
 # Define a main function that asks for user input and calls the plot_stock_data function
