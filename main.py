@@ -93,6 +93,5 @@ def main():
         graph_type = getGraphType()
         visualizeStockData(stock_data, graph_type)
 
-
 if __name__ == "__main__":
     main()
