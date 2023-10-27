@@ -73,6 +73,8 @@ def plot_stock_data(symbol, chart_type, time_series, start_date, end_date):
 # Define a main function that asks for user input and calls the plot_stock_data function
 def main():
     # Ask user for input
+    print("Stock Data Visualizer")
+    print("------------------------")
     symbol = input("Enter the stock symbol: ")
     chart_type = input("Enter the chart type (line or bar): ")
     # Ask user for the time series function with a list of options and a number
@@ -99,4 +101,9 @@ def main():
 
 # Call the main function
 if __name__ == "__main__":
+    main()
+
+answer = input("Would you like to look at another stock (Y/n)")
+mod_answer = answer.lower()
+if mod_answer == "y":
     main()
