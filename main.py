@@ -78,20 +78,17 @@ def visualizeStockData(data, graph_type):
 def main():
     print("Stock Data Visualizer")
     print("------------------------")
-    
-    # 1. Get the time series function first
+    stockData = getSymbol()
+
+    if stockData:
+        graphType = getGraphType()
+        visualizeStockData(stockData, graphType)
+        
     time_series = get_time_series_function()
-    if time_series is None:
+    if time_series is not None:
+        print(f"Selected time series function: {time_series}")
+    else:
         print("Invalid selection.")
-        return
-    
-    # 2. Get the stock symbol
-    stock_data = getSymbol(time_series)  # Pass the time series as an argument to modify the API request
-    
-    # 3. Get the graph type and visualize the stock data
-    if stock_data:
-        graph_type = getGraphType()
-        visualizeStockData(stock_data, graph_type)
 
 if __name__ == "__main__":
     main()
