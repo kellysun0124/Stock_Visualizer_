@@ -97,13 +97,9 @@ def main():
         return
 
     # Call the plot_stock_data function with user input as arguments
+
     plot_stock_data(symbol, chart_type, time_series, start_date, end_date)
 
 # Call the main function
 if __name__ == "__main__":
-    main()
-
-answer = input("Would you like to look at another stock (Y/n)")
-mod_answer = answer.lower()
-if mod_answer == "y":
     main()
