@@ -4,10 +4,8 @@ from stock import plot_stock_data
 
 #Ask the user to enter the stock symbol for the company they want data for.
 #and return data for said company
-def getSymbol():
+def getSymbol(stock_symbol):
    while True:
-        stock_symbol = input("\nenter the stock symbol for the company (or 'exit' to quit):  ")
-
         if stock_symbol.lower() == 'exit':
             exit()
 
@@ -69,40 +67,53 @@ def visualizeStockData(data, graph_type):
     plt.xticks(rotation=45)
     plt.show()
 
-def get_plot_stock_data(stockData, graphType, time_series):
+def get_plot_stock_data(stock_symbol, graphType, time_series):
     if graphType == '1':
         graphType = 'line'
     elif graphType == '2':
         graphType = 'bar'
+
     
     while True:
         start_date = input("Enter the start date (YYYY-MM-DD): ")
         end_date = input("Enter the end date (YYYY-MM-DD): ")
 
+            # print(stock_symbol)
+            # print(graphType)
+            # print(time_series)
+            # print(start_date)
+            # print(end_date)
+
         # Validate user input for date range and chart type
         if end_date > start_date:
             # Call the plot_stock_data function with user input as arguments
-            plot_stock_data(stockData, graphType, time_series, start_date, end_date)
+            plot_stock_data(stock_symbol, graphType, time_series, start_date, end_date)
             break
         else:
             print("Invalid date range. Please try again.")
 
 
 
-
+#Kelly Sun 11-16-2023
 def main():
     print("Stock Data Visualizer")
     print("------------------------")
-    stockData = getSymbol()
+    stock_symbol = input("\nenter the stock symbol for the company (or 'exit' to quit):  ")
+    stockData = getSymbol(stock_symbol)
 
     if stockData:
         graphType = getGraphType()
         visualizeStockData(stockData, graphType)
         
     time_series = get_time_series_function()
+    # print(stock_symbol)
+    # print(graphType)
+    # print(time_series)
+    # print(start_date)
+    # print(end_date)
     
     if time_series is not None:
-        get_plot_stock_data(stockData, graphType, time_series)
+        get_plot_stock_data(stock_symbol, graphType, time_series)
 
     else:
         print("Invalid selection.")

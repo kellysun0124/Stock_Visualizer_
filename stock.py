@@ -97,9 +97,16 @@ def main():
         return
 
     # Call the plot_stock_data function with user input as arguments
+    print(symbol)
+    print(chart_type)
+    print(time_series)
+    print(start_date)
+    print(end_date)
 
     plot_stock_data(symbol, chart_type, time_series, start_date, end_date)
 
 # Call the main function
 if __name__ == "__main__":
     main()
+
+main()
