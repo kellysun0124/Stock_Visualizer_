@@ -71,42 +71,39 @@ def plot_stock_data(symbol, chart_type, time_series, start_date, end_date):
     plt.show()
 
 # Define a main function that asks for user input and calls the plot_stock_data function
-def main():
-    # Ask user for input
-    print("Stock Data Visualizer")
-    print("------------------------")
-    symbol = input("Enter the stock symbol: ")
-    chart_type = input("Enter the chart type (line or bar): ")
-    # Ask user for the time series function with a list of options and a number
-    print("Enter the time series function:")
-    print("1. TIME_SERIES_INTRADAY")
-    print("2. TIME_SERIES_DAILY")
-    print("3. TIME_SERIES_WEEKLY")
-    print("4. TIME_SERIES_MONTHLY")
-    time_series = input("Enter the number: ")
+# def main():
+#     # Ask user for input
+#     print("Stock Data Visualizer")
+#     print("------------------------")
+#     symbol = input("Enter the stock symbol(testtest): ")
+#     chart_type = input("Enter the chart type (line or bar): ")
+#     # Ask user for the time series function with a list of options and a number
+#     print("Enter the time series function:")
+#     print("1. TIME_SERIES_INTRADAY")
+#     print("2. TIME_SERIES_DAILY")
+#     print("3. TIME_SERIES_WEEKLY")
+#     print("4. TIME_SERIES_MONTHLY")
+#     time_series = input("Enter the number: ")
     
-    start_date = input("Enter the start date (YYYY-MM-DD): ")
-    end_date = input("Enter the end date (YYYY-MM-DD): ")
+#     start_date = input("Enter the start date (YYYY-MM-DD): ")
+#     end_date = input("Enter the end date (YYYY-MM-DD): ")
 
-    # Validate user input for date range and chart type
-    if end_date < start_date:
-        print("Invalid date range. Please try again.")
-        return
-    if chart_type not in ["line", "bar"]:
-        print("Invalid chart type. Please try again.")
-        return
+#     # Validate user input for date range and chart type
+#     if end_date < start_date:
+#         print("Invalid date range. Please try again.")
+#         return
+#     if chart_type not in ["line", "bar"]:
+#         print("Invalid chart type. Please try again.")
+#         return
 
-    # Call the plot_stock_data function with user input as arguments
-    print(symbol)
-    print(chart_type)
-    print(time_series)
-    print(start_date)
-    print(end_date)
+#     # Call the plot_stock_data function with user input as arguments
+#     print(symbol)
+#     print(chart_type)
+#     print(time_series)
+#     print(start_date)
+#     print(end_date)
 
-    plot_stock_data(symbol, chart_type, time_series, start_date, end_date)
+#     plot_stock_data(symbol, chart_type, time_series, start_date, end_date)
 
-# Call the main function
-if __name__ == "__main__":
-    main()
+# # Call the main function
 
-main()

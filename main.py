@@ -4,7 +4,11 @@ from stock import plot_stock_data
 
 #Ask the user to enter the stock symbol for the company they want data for.
 #and return data for said company
-def getSymbol(stock_symbol):
+def get_symbol():
+    stock_symbol = input("\nenter the stock symbol for the company (or 'exit' to quit):  ")
+    return stock_symbol
+
+def getSymbol_data(stock_symbol):
    while True:
         if stock_symbol.lower() == 'exit':
             exit()
@@ -67,6 +71,11 @@ def visualizeStockData(data, graph_type):
     plt.xticks(rotation=45)
     plt.show()
 
+def get_dates():
+    start_date = input("Enter the start date (YYYY-MM-DD): ")
+    end_date = input("Enter the end date (YYYY-MM-DD): ")
+    return start_date, end_date
+
 def get_plot_stock_data(stock_symbol, graphType, time_series):
     if graphType == '1':
         graphType = 'line'
@@ -75,14 +84,7 @@ def get_plot_stock_data(stock_symbol, graphType, time_series):
 
     
     while True:
-        start_date = input("Enter the start date (YYYY-MM-DD): ")
-        end_date = input("Enter the end date (YYYY-MM-DD): ")
-
-            # print(stock_symbol)
-            # print(graphType)
-            # print(time_series)
-            # print(start_date)
-            # print(end_date)
+        start_date, end_date = get_dates()
 
         # Validate user input for date range and chart type
         if end_date > start_date:
@@ -98,8 +100,8 @@ def get_plot_stock_data(stock_symbol, graphType, time_series):
 def main():
     print("Stock Data Visualizer")
     print("------------------------")
-    stock_symbol = input("\nenter the stock symbol for the company (or 'exit' to quit):  ")
-    stockData = getSymbol(stock_symbol)
+    stock_symbol = get_symbol()
+    stockData = getSymbol_data(stock_symbol)
 
     if stockData:
         graphType = getGraphType()
