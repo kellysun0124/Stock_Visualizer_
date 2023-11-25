@@ -53,16 +53,16 @@ def plot_stock_data(symbol, chart_type, time_series, start_date, end_date):
     # Plot the data according to chart type
     if chart_type == "line":
         # Use matplotlib.pyplot to create line charts for open, close, high, and low prices
-        plt.plot(df.index, df["Open"], label="Open")
-        plt.plot(df.index, df["Close"], label="Close")
-        plt.plot(df.index, df["High"], label="High")
-        plt.plot(df.index, df["Low"], label="Low")
+        plt.plot(df.index, df["Open"], label="Open", color='green')
+        plt.plot(df.index, df["Close"], label="Close", color='red')
+        plt.plot(df.index, df["High"], label="High", color='purple')
+        plt.plot(df.index, df["Low"], label="Low", color='orange')
     elif chart_type == "bar":
         # Use matplotlib.pyplot to create a bar chart of close prices
-        plt.bar(df.index, df["Open"], label="Open")
-        plt.bar(df.index, df["Close"], label="Close")
-        plt.bar(df.index, df["High"], label="High")
-        plt.bar(df.index, df["Low"], label="Low")
+        plt.bar(df.index, df["Open"], label="Open", color='green')
+        plt.bar(df.index, df["Close"], label="Close", color='red')
+        plt.bar(df.index, df["High"], label="High", color='purple')
+        plt.bar(df.index, df["Low"], label="Low", color='orange')
 
     plt.title(f"{symbol} Prices from {start_date} to {end_date}")
     plt.xlabel("Date")

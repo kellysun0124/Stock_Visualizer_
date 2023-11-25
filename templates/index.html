@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Stock Visualizer {% endblock %} </h1>
+    <form method="post">
+        <label for="stock">Stock: </label>
+        <br>
+        <select name="stock"
+                placeholder="stock"
+                value="{{ request.form[stock] }}"></input>
+        <br>
+
+        <label for="chart type">Chart Type: </label>
+        <br>
+        <select name="chart type"
+                placeholder="chart type"
+                value="{{ request.form[chart type] }}"></input>
+        <br>
+
+        <label for="time series">Time Series: </label>
+        <br>
+        <select name="time series"
+                placeholder="time series"
+                value="{{ request.form[time series] }}"></input>
+        <br>
+
+        <label for="start date">Start Date: </label>
+        <br>
+        <input type="date" name="start date"
+                placeholder="start date"
+                value="{{ request.form[start date] }}"></input>
+        <br>
+
+        <label for="end date">End Date: </label>
+        <br>
+        <input type="date" name="end date"
+                placeholder="end date"
+                value="{{ request.form[end date] }}"></input>
+        <br>
+
+        <button type="submit">Submit</button>
+        
+    </form>
+    
+
+{% endblock %}

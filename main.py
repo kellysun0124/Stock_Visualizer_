@@ -2,6 +2,8 @@ from script import fetch_all_stock_data
 import matplotlib.pyplot as plt
 from stock import plot_stock_data
 
+#part 1 project, don't use
+
 #Ask the user to enter the stock symbol for the company they want data for.
 #and return data for said company
 def get_symbol():
