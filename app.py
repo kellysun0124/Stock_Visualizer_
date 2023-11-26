@@ -72,4 +72,4 @@ def index():
     else:
         return render_template('index.html', symbol_list=symbol_list, chart_choice=chart_choice, time_choice=time_choice, graph=graph)
 
-app.run(host="0.0.0.0", port=5001)
+app.run(host="0.0.0.0")
