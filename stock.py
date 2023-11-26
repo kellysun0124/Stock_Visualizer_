@@ -2,18 +2,23 @@
 import requests
 import pandas as pd
 import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('Agg')
+from io import BytesIO
+import base64
+
 
 # Define a function that takes the time series number as an argument and returns the corresponding function name
-def get_time_series_function(time_series):
-    # Use a dictionary to map the numbers to the function names
-    time_series_dict = {
-        "1": "TIME_SERIES_INTRADAY",
-        "2": "TIME_SERIES_DAILY",
-        "3": "TIME_SERIES_WEEKLY",
-        "4": "TIME_SERIES_MONTHLY"
-    }
-    # Return the function name if the number is valid, otherwise return None
-    return time_series_dict.get(time_series, None)
+# def get_time_series_function(time_series):
+#     # Use a dictionary to map the numbers to the function names
+#     time_series_dict = {
+#         "1": "TIME_SERIES_INTRADAY",
+#         "2": "TIME_SERIES_DAILY",
+#         "3": "TIME_SERIES_WEEKLY",
+#         "4": "TIME_SERIES_MONTHLY"
+#     }
+#     # Return the function name if the number is valid, otherwise return None
+#     return time_series_dict.get(time_series, None)
 
 # Define a function that takes the symbol, chart type, time series, start date and end date as arguments and plots the data
 def plot_stock_data(symbol, chart_type, time_series, start_date, end_date):
@@ -22,7 +27,7 @@ def plot_stock_data(symbol, chart_type, time_series, start_date, end_date):
     # Build the API URL
     base_url = "https://www.alphavantage.co/query"
     params = {
-        "function": get_time_series_function(time_series),
+        "function": time_series,
         "symbol": symbol,
         "apikey": api_key,
         "outputsize": "full",
@@ -68,7 +73,14 @@ def plot_stock_data(symbol, chart_type, time_series, start_date, end_date):
     plt.xlabel("Date")
     plt.ylabel("Price")
     plt.legend()  # Add a legend to distinguish open, close, high, and low lines
-    plt.show()
+    #plt.show()
+    img = BytesIO()
+    plt.savefig(img, format='png')
+    plt.close()
+    img.seek(0)
+    plot_url = base64.b64encode(img.getvalue()).decode('utf8')
+
+    return plot_url
 
 # Define a main function that asks for user input and calls the plot_stock_data function
 # def main():
@@ -103,7 +115,8 @@ def plot_stock_data(symbol, chart_type, time_series, start_date, end_date):
 #     print(start_date)
 #     print(end_date)
 
-#     plot_stock_data(symbol, chart_type, time_series, start_date, end_date)
+#     #plot_stock_data(symbol, chart_type, time_series, start_date, end_date)
 
-# # Call the main function
+# # # Call the main function
 
+# main()
