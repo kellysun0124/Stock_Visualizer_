@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, url_for, flash, redirect, abort
 import pandas
 from stock import plot_stock_data
-from datetime import datetime
 
 
 # make a Flask application object called app
